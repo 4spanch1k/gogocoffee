@@ -10,6 +10,26 @@ const INSTAGRAM_URL = "https://www.instagram.com/gogo.coffee.kzo/";
 const CART_STORAGE_KEY = "gogo-coffee-cart";
 const price = (value: number) => `${value.toLocaleString("ru-RU")} ₸`;
 const categoryMeta = new Map(categories.map((category) => [category.id, category]));
+const coffeeMenuImage = new URL("./assets/menu/coffee.png", import.meta.url).href;
+const lemonadeMenuImage = new URL("./assets/menu/lemonade.png", import.meta.url).href;
+const milkshakeMenuImage = new URL("./assets/menu/milkshake-cutout.png", import.meta.url).href;
+const pizzaMenuImage = new URL("./assets/menu/pizza.png", import.meta.url).href;
+const burgerMenuImage = new URL("./assets/menu/burger-cutout.png", import.meta.url).href;
+const hotDogMenuImage = new URL("./assets/menu/hot-dog.png", import.meta.url).href;
+
+const menuImageByCategory: Partial<Record<MenuCategory, string>> = {
+  coffee: coffeeMenuImage,
+  "ice-coffee": coffeeMenuImage,
+  tea: coffeeMenuImage,
+  milkshake: milkshakeMenuImage,
+  fresh: lemonadeMenuImage,
+  lemonades: lemonadeMenuImage,
+  smoothie: milkshakeMenuImage,
+  drinks: lemonadeMenuImage,
+  pizza: pizzaMenuImage,
+  burger: burgerMenuImage,
+  "hot-dog": hotDogMenuImage,
+};
 
 const tabs: Array<{ id: TabId; label: string }> = [
   { id: "popular", label: "Популярное" },
@@ -236,7 +256,6 @@ function App() {
                         <h3 className="text-lg font-semibold">{group.category.label}</h3>
                         <span className="text-sm text-espresso/55">{group.items.length} поз.</span>
                       </div>
-                      {group.category.image && <img src={group.category.image} alt={`Фото категории ${group.category.label}`} className="h-16 w-24 object-cover" loading="lazy" />}
                     </div>
                     <div className={group.category.accent === "deal" ? "grid gap-4 sm:grid-cols-2" : "divide-y divide-espresso/15"}>
                       {group.items.map((item) => (
@@ -292,7 +311,7 @@ function FeaturedItem({
     <article className="w-[220px] shrink-0 snap-start overflow-hidden bg-espresso text-milk lg:w-auto">
       {item.image && (
         <div className="flex h-40 items-end justify-center px-3 pt-3">
-          <img src={item.image} alt={`Фото ${item.title}`} className={`h-full w-full object-contain ${imageScaleClass(item)}`} loading="lazy" />
+          <img src={item.image} alt={`Фото ${item.title}`} className={`h-full w-full object-contain ${imageScaleClass(item)} ${item.id === "combo-1" ? "-translate-x-2" : ""}`} loading="lazy" />
         </div>
       )}
       <div className="p-3">
@@ -317,12 +336,18 @@ function MenuItemRow({
   onChange: (id: string, delta: number) => void;
 }) {
   const isDeal = item.category === "combo" || item.category === "sets";
+  const itemImage = isDeal ? undefined : menuImageByCategory[item.category];
 
   return (
     <article className={isDeal ? "overflow-hidden border border-espresso/15 bg-milk" : "flex items-center gap-3 py-4"}>
       {isDeal && item.image && (
         <div className="flex h-48 items-end justify-center bg-crema px-4 pt-4">
           <img src={item.image} alt={`Фото ${item.title}`} className={`h-full w-full object-contain ${imageScaleClass(item)}`} loading="lazy" />
+        </div>
+      )}
+      {itemImage && (
+        <div className="flex h-16 w-16 shrink-0 items-center justify-center sm:h-20 sm:w-20">
+          <img src={itemImage} alt={`Фото ${item.title}`} className="max-h-full max-w-full object-contain" loading="lazy" />
         </div>
       )}
       <div className={isDeal ? "p-4" : "min-w-0 flex-1"}>
