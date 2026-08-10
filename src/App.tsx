@@ -289,7 +289,7 @@ function FeaturedItem({
     <article className="w-[220px] shrink-0 snap-start overflow-hidden bg-espresso text-milk lg:w-auto">
       {item.image && (
         <div className="flex h-40 items-end justify-center px-3 pt-3">
-          <img src={item.image} alt={`Фото ${item.title}`} className={`h-full w-full object-contain ${imageScaleClass(item)} ${item.id === "combo-1" ? "translate-y-2" : ""}`} loading="lazy" />
+          <img src={item.image} alt={`Фото ${item.title}`} className={`h-full w-full object-contain ${imageScaleClass(item)} ${item.id === "combo-1" ? "translate-y-5" : ""}`} loading="lazy" />
         </div>
       )}
       <div className="p-3">
