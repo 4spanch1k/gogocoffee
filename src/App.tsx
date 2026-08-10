@@ -10,26 +10,48 @@ const INSTAGRAM_URL = "https://www.instagram.com/gogo.coffee.kzo/";
 const CART_STORAGE_KEY = "gogo-coffee-cart";
 const price = (value: number) => `${value.toLocaleString("ru-RU")} ₸`;
 const categoryMeta = new Map(categories.map((category) => [category.id, category]));
-const coffeeMenuImage = new URL("./assets/menu/coffee.png", import.meta.url).href;
+const espressoMenuImage = new URL("./assets/menu/espresso.png", import.meta.url).href;
+const latteMenuImage = new URL("./assets/menu/latte-cutout.png", import.meta.url).href;
+const icedCoffeeMenuImage = new URL("./assets/menu/iced-coffee.png", import.meta.url).href;
+const teaMenuImage = new URL("./assets/menu/tea-cutout.png", import.meta.url).href;
 const lemonadeMenuImage = new URL("./assets/menu/lemonade.png", import.meta.url).href;
 const milkshakeMenuImage = new URL("./assets/menu/milkshake-cutout.png", import.meta.url).href;
+const strawberryMilkshakeMenuImage = new URL("./assets/menu/strawberry-milkshake-cutout.png", import.meta.url).href;
+const orangeJuiceMenuImage = new URL("./assets/menu/orange-juice-cutout.png", import.meta.url).href;
+const smoothieMenuImage = new URL("./assets/menu/smoothie.png", import.meta.url).href;
+const colaMenuImage = new URL("./assets/menu/cola.png", import.meta.url).href;
 const pizzaMenuImage = new URL("./assets/menu/pizza.png", import.meta.url).href;
 const burgerMenuImage = new URL("./assets/menu/burger-cutout.png", import.meta.url).href;
 const hotDogMenuImage = new URL("./assets/menu/hot-dog.png", import.meta.url).href;
+const friesMenuImage = new URL("./assets/menu/fries.png", import.meta.url).href;
+const nuggetsMenuImage = new URL("./assets/menu/nuggets-cutout.png", import.meta.url).href;
+const sauceMenuImage = new URL("./assets/menu/sauce.png", import.meta.url).href;
 
 const menuImageByCategory: Partial<Record<MenuCategory, string>> = {
-  coffee: coffeeMenuImage,
-  "ice-coffee": coffeeMenuImage,
-  tea: coffeeMenuImage,
+  coffee: latteMenuImage,
+  "ice-coffee": icedCoffeeMenuImage,
+  tea: teaMenuImage,
   milkshake: milkshakeMenuImage,
-  fresh: lemonadeMenuImage,
+  fresh: orangeJuiceMenuImage,
   lemonades: lemonadeMenuImage,
-  smoothie: milkshakeMenuImage,
-  drinks: lemonadeMenuImage,
+  smoothie: smoothieMenuImage,
+  drinks: colaMenuImage,
   pizza: pizzaMenuImage,
   burger: burgerMenuImage,
   "hot-dog": hotDogMenuImage,
+  snacks: friesMenuImage,
+  sauces: sauceMenuImage,
 };
+
+const menuImageByItemId: Record<string, string> = {
+  espresso: espressoMenuImage,
+  "americano-03": espressoMenuImage,
+  "americano-04": espressoMenuImage,
+  "milkshake-strawberry": strawberryMilkshakeMenuImage,
+  nuggets: nuggetsMenuImage,
+};
+
+const menuImageFor = (item: MenuItem) => menuImageByItemId[item.id] ?? menuImageByCategory[item.category];
 
 const tabs: Array<{ id: TabId; label: string }> = [
   { id: "popular", label: "Популярное" },
@@ -336,7 +358,7 @@ function MenuItemRow({
   onChange: (id: string, delta: number) => void;
 }) {
   const isDeal = item.category === "combo" || item.category === "sets";
-  const itemImage = isDeal ? undefined : menuImageByCategory[item.category];
+  const itemImage = isDeal ? undefined : menuImageFor(item);
 
   return (
     <article className={isDeal ? "overflow-hidden border border-espresso/15 bg-milk" : "flex items-center gap-3 py-4"}>
