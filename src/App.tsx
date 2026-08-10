@@ -19,6 +19,7 @@ const tabs: Array<{ id: TabId; label: string }> = [
 ];
 
 const featuredItems = menu.filter((item) => item.category === "combo" && item.isNew);
+const imageScaleClass = (item: MenuItem) => (item.id === "combo-4" || item.id === "combo-5" ? "scale-[0.82]" : item.id === "combo-3" ? "scale-[0.9]" : "scale-100");
 
 function App() {
   const [activeTab, setActiveTab] = useState<TabId>("popular");
@@ -286,7 +287,11 @@ function FeaturedItem({
 }) {
   return (
     <article className="w-[220px] shrink-0 snap-start overflow-hidden bg-espresso text-milk lg:w-auto">
-      {item.image && <img src={item.image} alt={`Фото ${item.title}`} className="h-36 w-full object-contain" loading="lazy" />}
+      {item.image && (
+        <div className="flex h-40 items-end justify-center px-3 pt-3">
+          <img src={item.image} alt={`Фото ${item.title}`} className={`h-full w-full object-contain ${imageScaleClass(item)}`} loading="lazy" />
+        </div>
+      )}
       <div className="p-3">
         <div className="flex items-start justify-between gap-2">
           <h3 className="font-semibold">{item.title}</h3>
@@ -312,7 +317,11 @@ function MenuItemRow({
 
   return (
     <article className={isDeal ? "overflow-hidden border border-espresso/15 bg-milk" : "flex items-center gap-3 py-4"}>
-      {isDeal && item.image && <img src={item.image} alt={`Фото ${item.title}`} className="h-44 w-full bg-black object-contain" loading="lazy" />}
+      {isDeal && item.image && (
+        <div className="flex h-48 items-end justify-center bg-crema px-4 pt-4">
+          <img src={item.image} alt={`Фото ${item.title}`} className={`h-full w-full object-contain ${imageScaleClass(item)}`} loading="lazy" />
+        </div>
+      )}
       <div className={isDeal ? "p-4" : "min-w-0 flex-1"}>
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
