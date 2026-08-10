@@ -397,11 +397,11 @@ function FeaturedComboCard({
       className="overflow-hidden rounded-[28px] border border-white/15 bg-milk text-espresso shadow-soft"
     >
       {item.image && !imageFailed && (
-        <div className="relative aspect-[16/11] overflow-hidden bg-[#fff7e3] md:aspect-[16/10]">
+        <div className="relative aspect-[16/11] overflow-hidden bg-black md:aspect-[16/10]">
           <img
             src={item.image}
             alt={item.title}
-            className="absolute inset-0 h-full w-full object-cover object-[center_54%]"
+            className="absolute inset-0 h-full w-full object-contain"
             loading={index === 0 ? "eager" : "lazy"}
             onError={() => setImageFailed(true)}
           />
@@ -494,11 +494,11 @@ function MenuCard({
       }`}
     >
       {item.image && !imageFailed && (
-        <div className="mb-3 h-36 overflow-hidden rounded-xl bg-crema sm:h-40">
+        <div className={`mb-3 overflow-hidden rounded-xl ${isDeal ? "h-40 bg-black sm:h-44" : "h-36 bg-crema sm:h-40"}`}>
           <img
             src={item.image}
             alt={item.title}
-            className="h-full w-full object-cover"
+            className={`h-full w-full ${isDeal ? "object-contain" : "object-cover"}`}
             loading="lazy"
             onError={() => setImageFailed(true)}
           />

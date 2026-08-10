@@ -1,5 +1,8 @@
-const combo1Image = new URL("../../combo1-2/combo1.jpg", import.meta.url).href;
-const combo2Image = new URL("../../combo1-2/combo2.jpg", import.meta.url).href;
+const combo1Image = new URL("../assets/combos/combo-1.png", import.meta.url).href;
+const combo2Image = new URL("../assets/combos/combo-2.png", import.meta.url).href;
+const combo3Image = new URL("../assets/combos/combo-3.png", import.meta.url).href;
+const combo4Image = new URL("../assets/combos/combo-4.png", import.meta.url).href;
+const combo5Image = new URL("../assets/combos/combo-5.png", import.meta.url).href;
 
 export type MenuCategory =
   | "coffee"
@@ -201,6 +204,7 @@ export const menu: MenuItem[] = [
     price: 2800,
     description: "Фри + Бургер + Лимонад",
     badge: "Новое",
+    image: combo3Image,
     isNew: true,
   },
   {
@@ -210,6 +214,7 @@ export const menu: MenuItem[] = [
     price: 2390,
     description: "Сладкий бургер + Кофе 0.3",
     badge: "Новое",
+    image: combo4Image,
     isNew: true,
   },
   {
@@ -219,6 +224,7 @@ export const menu: MenuItem[] = [
     price: 2800,
     description: "GoGo Burger + Фри + Кола",
     badge: "Новое",
+    image: combo5Image,
     isNew: true,
   },
   {
