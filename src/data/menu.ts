@@ -6,6 +6,10 @@ const combo5Image = new URL("../assets/combos/combo-5-pdf.png", import.meta.url)
 const combo6Image = new URL("../assets/combos/combo-6-pdf.png", import.meta.url).href;
 const combo7Image = new URL("../assets/combos/combo-7-pdf.png", import.meta.url).href;
 const combo8Image = new URL("../assets/combos/combo-8-pdf.png", import.meta.url).href;
+const coffeeCategoryImage = new URL("../assets/categories/coffee.jpg", import.meta.url).href;
+const pizzaCategoryImage = new URL("../assets/categories/pizza.jpg", import.meta.url).href;
+const burgerCategoryImage = new URL("../assets/categories/burger.jpg", import.meta.url).href;
+const drinksCategoryImage = new URL("../assets/categories/drinks.jpg", import.meta.url).href;
 
 export type MenuCategory =
   | "coffee"
@@ -42,25 +46,26 @@ export type Category = {
   label: string;
   shortLabel: string;
   accent: "coffee" | "fresh" | "food" | "deal" | "basic";
+  image?: string;
 };
 
 export const categories: Category[] = [
-  { id: "coffee", label: "Ыстық кофе / Hot coffee", shortLabel: "Hot coffee", accent: "coffee" },
-  { id: "milkshake", label: "Милкшейк / Milkshake", shortLabel: "Milkshake", accent: "fresh" },
-  { id: "fresh", label: "Фреш / Fresh", shortLabel: "Fresh", accent: "fresh" },
-  { id: "lemonades", label: "Лимонадтар / Lemonades", shortLabel: "Lemonades", accent: "fresh" },
-  { id: "smoothie", label: "Смузи / Smoothie", shortLabel: "Smoothie", accent: "fresh" },
-  { id: "ice-coffee", label: "Мұз қосылған кофе", shortLabel: "Ice coffee", accent: "coffee" },
-  { id: "tea", label: "Шай / Tea", shortLabel: "Шай", accent: "coffee" },
-  { id: "drinks", label: "Сусындар / Напитки", shortLabel: "Сусындар", accent: "basic" },
-  { id: "addons", label: "Қосымшалар / Добавки", shortLabel: "Қосымша", accent: "basic" },
-  { id: "pizza", label: "Pizza", shortLabel: "Pizza", accent: "food" },
-  { id: "burger", label: "Burger", shortLabel: "Burger", accent: "food" },
-  { id: "hot-dog", label: "Hot dog", shortLabel: "Hot dog", accent: "food" },
-  { id: "snacks", label: "Тіскебасар", shortLabel: "Снэк", accent: "food" },
-  { id: "sauces", label: "Тұздықтар", shortLabel: "Соус", accent: "basic" },
+  { id: "coffee", label: "Ыстық кофе / Hot coffee", shortLabel: "Hot coffee", accent: "coffee", image: coffeeCategoryImage },
+  { id: "milkshake", label: "Милкшейк / Milkshake", shortLabel: "Milkshake", accent: "fresh", image: drinksCategoryImage },
+  { id: "fresh", label: "Фреш / Fresh", shortLabel: "Fresh", accent: "fresh", image: drinksCategoryImage },
+  { id: "lemonades", label: "Лимонадтар / Lemonades", shortLabel: "Lemonades", accent: "fresh", image: drinksCategoryImage },
+  { id: "smoothie", label: "Смузи / Smoothie", shortLabel: "Smoothie", accent: "fresh", image: drinksCategoryImage },
+  { id: "ice-coffee", label: "Мұз қосылған кофе", shortLabel: "Ice coffee", accent: "coffee", image: coffeeCategoryImage },
+  { id: "tea", label: "Шай / Tea", shortLabel: "Шай", accent: "coffee", image: coffeeCategoryImage },
+  { id: "drinks", label: "Сусындар / Напитки", shortLabel: "Сусындар", accent: "basic", image: drinksCategoryImage },
+  { id: "addons", label: "Қосымшалар / Добавки", shortLabel: "Қосымша", accent: "basic", image: drinksCategoryImage },
+  { id: "pizza", label: "Pizza", shortLabel: "Pizza", accent: "food", image: pizzaCategoryImage },
+  { id: "burger", label: "Burger", shortLabel: "Burger", accent: "food", image: burgerCategoryImage },
+  { id: "hot-dog", label: "Hot dog", shortLabel: "Hot dog", accent: "food", image: burgerCategoryImage },
+  { id: "snacks", label: "Тіскебасар", shortLabel: "Снэк", accent: "food", image: burgerCategoryImage },
+  { id: "sauces", label: "Тұздықтар", shortLabel: "Соус", accent: "basic", image: burgerCategoryImage },
   { id: "combo", label: "Комбо", shortLabel: "Комбо", accent: "deal" },
-  { id: "sets", label: "Сеттер", shortLabel: "Сет", accent: "deal" },
+  { id: "sets", label: "Сеттер", shortLabel: "Сет", accent: "deal", image: burgerCategoryImage },
 ];
 
 export const menu: MenuItem[] = [

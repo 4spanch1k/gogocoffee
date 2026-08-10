@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Instagram, Minus, Plus, Search, Send, ShoppingBag, X } from "lucide-react";
 import { categories, menu, type MenuCategory, type MenuItem } from "./data/menu";
 
-type TabId = "popular" | "new" | "all" | MenuCategory;
+type TabId = "popular" | "all" | MenuCategory;
 type Cart = Record<string, number>;
 
 const WHATSAPP_NUMBER = "77711857998";
@@ -13,9 +13,8 @@ const categoryMeta = new Map(categories.map((category) => [category.id, category
 
 const tabs: Array<{ id: TabId; label: string }> = [
   { id: "popular", label: "Популярное" },
-  { id: "new", label: "Новое" },
   { id: "all", label: "Всё меню" },
-  ...categories.map((category) => ({ id: category.id, label: category.shortLabel })),
+  ...categories.filter((category) => category.id !== "combo").map((category) => ({ id: category.id, label: category.shortLabel })),
 ];
 
 const featuredItems = menu.filter((item) => item.category === "combo" && item.isNew);
@@ -55,10 +54,11 @@ function App() {
     const normalizedQuery = query.trim().toLowerCase();
 
     return menu.filter((item) => {
+      if (item.category === "combo") return false;
       const category = categoryMeta.get(item.category);
       const matchesTab =
         activeTab === "all" ||
-        (activeTab === "popular" ? item.popular : activeTab === "new" ? item.isNew : item.category === activeTab);
+        (activeTab === "popular" ? item.popular : item.category === activeTab);
       const haystack = `${item.title} ${item.description ?? ""} ${category?.label ?? ""}`.toLowerCase();
       return matchesTab && (!normalizedQuery || haystack.includes(normalizedQuery));
     });
@@ -106,6 +106,8 @@ function App() {
     window.setTimeout(() => document.getElementById("menu")?.scrollIntoView({ behavior: "smooth", block: "start" }), 0);
   };
 
+  const scrollToNewCombos = () => document.getElementById("new-combo")?.scrollIntoView({ behavior: "smooth", block: "start" });
+
   const scrollToCart = () => document.getElementById("cart")?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   return (
@@ -121,7 +123,7 @@ function App() {
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noreferrer"
-              className="grid h-10 w-10 place-items-center rounded-lg text-milk/80 transition-colors hover:bg-white/10 hover:text-milk active:translate-y-px"
+              className="grid h-10 w-10 place-items-center rounded-lg text-milk/80 transition-colors hover:bg-cacao hover:text-milk active:translate-y-px"
               aria-label="Instagram GO GO COFFEE"
             >
               <Instagram size={19} />
@@ -149,7 +151,7 @@ function App() {
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <button
-                  onClick={() => scrollToMenu("new")}
+                  onClick={scrollToNewCombos}
                   className="rounded-lg bg-espresso px-5 py-3 text-sm font-semibold text-milk transition-colors hover:bg-cacao active:translate-y-px"
                 >
                   Новое меню
@@ -165,15 +167,13 @@ function App() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-6xl border-b border-espresso/15 px-4 py-7 sm:px-6">
+        <section id="new-combo" className="mx-auto max-w-6xl scroll-mt-4 border-b border-espresso/15 px-4 py-7 sm:px-6">
           <div className="flex items-end justify-between gap-4">
             <div>
               <p className="text-sm font-medium text-cacao">Обновление меню</p>
               <h2 className="mt-1 text-2xl font-semibold tracking-[-0.03em]">Новое комбо</h2>
             </div>
-            <button onClick={() => scrollToMenu("new")} className="text-sm font-semibold underline underline-offset-4">
-              Смотреть всё
-            </button>
+            <span className="text-sm text-espresso/60">8 позиций</span>
           </div>
           <div className="hide-scrollbar mt-5 flex snap-x gap-4 overflow-x-auto pb-2 lg:grid lg:grid-cols-5 lg:overflow-visible">
             {featuredItems.map((item) => (
@@ -231,9 +231,12 @@ function App() {
               ) : (
                 groupedItems.map((group) => (
                   <section key={group.category.id} className="mb-9 scroll-mt-28">
-                    <div className="mb-3 flex items-baseline justify-between border-b border-espresso/20 pb-3">
-                      <h3 className="text-lg font-semibold">{group.category.label}</h3>
-                      <span className="text-sm text-espresso/55">{group.items.length}</span>
+                    <div className="mb-3 flex items-center justify-between gap-4 border-b border-espresso/20 pb-3">
+                      <div>
+                        <h3 className="text-lg font-semibold">{group.category.label}</h3>
+                        <span className="text-sm text-espresso/55">{group.items.length} поз.</span>
+                      </div>
+                      {group.category.image && <img src={group.category.image} alt={`Фото категории ${group.category.label}`} className="h-16 w-24 object-cover" loading="lazy" />}
                     </div>
                     <div className={group.category.accent === "deal" ? "grid gap-4 sm:grid-cols-2" : "divide-y divide-espresso/15"}>
                       {group.items.map((item) => (
@@ -289,7 +292,7 @@ function FeaturedItem({
     <article className="w-[220px] shrink-0 snap-start overflow-hidden bg-espresso text-milk lg:w-auto">
       {item.image && (
         <div className="flex h-40 items-end justify-center px-3 pt-3">
-          <img src={item.image} alt={`Фото ${item.title}`} className={`h-full w-full object-contain ${imageScaleClass(item)} ${item.id === "combo-1" ? "translate-y-5" : ""}`} loading="lazy" />
+          <img src={item.image} alt={`Фото ${item.title}`} className={`h-full w-full object-contain ${imageScaleClass(item)}`} loading="lazy" />
         </div>
       )}
       <div className="p-3">
