@@ -19,7 +19,7 @@ const tabs: Array<{ id: TabId; label: string }> = [
 ];
 
 const featuredItems = menu.filter((item) => item.category === "combo" && item.isNew);
-const imageScaleClass = (item: MenuItem) => (item.id === "combo-4" || item.id === "combo-5" ? "scale-[0.82]" : item.id === "combo-3" ? "scale-[0.9]" : "scale-100");
+const imageScaleClass = (item: MenuItem) => (item.id === "combo-7" || item.id === "combo-8" ? "scale-[0.82]" : item.id === "combo-3" ? "scale-[0.9]" : "scale-100");
 
 function App() {
   const [activeTab, setActiveTab] = useState<TabId>("popular");
@@ -169,7 +169,7 @@ function App() {
           <div className="flex items-end justify-between gap-4">
             <div>
               <p className="text-sm font-medium text-cacao">Обновление меню</p>
-              <h2 className="mt-1 text-2xl font-semibold tracking-[-0.03em]">Новые комбо</h2>
+              <h2 className="mt-1 text-2xl font-semibold tracking-[-0.03em]">Новое комбо</h2>
             </div>
             <button onClick={() => scrollToMenu("new")} className="text-sm font-semibold underline underline-offset-4">
               Смотреть всё
@@ -313,7 +313,7 @@ function MenuItemRow({
   quantity: number;
   onChange: (id: string, delta: number) => void;
 }) {
-  const isDeal = item.category === "combo" || item.category === "sets" || item.category === "desserts";
+  const isDeal = item.category === "combo" || item.category === "sets";
 
   return (
     <article className={isDeal ? "overflow-hidden border border-espresso/15 bg-milk" : "flex items-center gap-3 py-4"}>

@@ -1,8 +1,11 @@
-const combo1Image = new URL("../assets/combos/combo-1-transparent.png", import.meta.url).href;
-const combo2Image = new URL("../assets/combos/combo-2-transparent.png", import.meta.url).href;
-const combo3Image = new URL("../assets/combos/combo-3-transparent.png", import.meta.url).href;
-const combo4Image = new URL("../assets/combos/combo-4-transparent.png", import.meta.url).href;
-const combo5Image = new URL("../assets/combos/combo-5-transparent.png", import.meta.url).href;
+const combo1Image = new URL("../assets/combos/combo-1-pdf.png", import.meta.url).href;
+const combo2Image = new URL("../assets/combos/combo-2-pdf.png", import.meta.url).href;
+const combo3Image = new URL("../assets/combos/combo-3-pdf.png", import.meta.url).href;
+const combo4Image = new URL("../assets/combos/combo-4-pdf.png", import.meta.url).href;
+const combo5Image = new URL("../assets/combos/combo-5-pdf.png", import.meta.url).href;
+const combo6Image = new URL("../assets/combos/combo-6-pdf.png", import.meta.url).href;
+const combo7Image = new URL("../assets/combos/combo-7-pdf.png", import.meta.url).href;
+const combo8Image = new URL("../assets/combos/combo-8-pdf.png", import.meta.url).href;
 
 export type MenuCategory =
   | "coffee"
@@ -20,8 +23,7 @@ export type MenuCategory =
   | "snacks"
   | "sauces"
   | "combo"
-  | "sets"
-  | "desserts";
+  | "sets";
 
 export type MenuItem = {
   id: string;
@@ -58,7 +60,6 @@ export const categories: Category[] = [
   { id: "snacks", label: "Тіскебасар", shortLabel: "Снэк", accent: "food" },
   { id: "sauces", label: "Тұздықтар", shortLabel: "Соус", accent: "basic" },
   { id: "combo", label: "Комбо", shortLabel: "Комбо", accent: "deal" },
-  { id: "desserts", label: "Мороженое", shortLabel: "Мороженое", accent: "deal" },
   { id: "sets", label: "Сеттер", shortLabel: "Сет", accent: "deal" },
 ];
 
@@ -211,8 +212,8 @@ export const menu: MenuItem[] = [
     id: "combo-4",
     title: "КОМБО 4",
     category: "combo",
-    price: 2390,
-    description: "Сладкий бургер + Кофе 0.3",
+    price: 2290,
+    description: "Мороженое: клубника и банан + Коктейль",
     badge: "Новое",
     image: combo4Image,
     isNew: true,
@@ -221,37 +222,40 @@ export const menu: MenuItem[] = [
     id: "combo-5",
     title: "КОМБО 5",
     category: "combo",
-    price: 2800,
-    description: "GoGo Burger + Фри + Кола",
+    price: 2290,
+    description: "Мороженое с ананасом + Коктейль",
     badge: "Новое",
     image: combo5Image,
     isNew: true,
   },
   {
-    id: "ice-cream-strawberry-banana",
-    title: "Мороженое: клубника и банан",
-    category: "desserts",
+    id: "combo-6",
+    title: "КОМБО 6",
+    category: "combo",
     price: 2290,
-    description: "+ Коктейль",
+    description: "Мороженое с манго + Коктейль",
     badge: "Новое",
+    image: combo6Image,
     isNew: true,
   },
   {
-    id: "ice-cream-pineapple",
-    title: "Мороженое с ананасом",
-    category: "desserts",
-    price: 2290,
-    description: "+ Коктейль",
+    id: "combo-7",
+    title: "КОМБО 7",
+    category: "combo",
+    price: 2390,
+    description: "Сладкий бургер + Кофе 0.3",
     badge: "Новое",
+    image: combo7Image,
     isNew: true,
   },
   {
-    id: "ice-cream-mango",
-    title: "Мороженое с манго",
-    category: "desserts",
-    price: 2290,
-    description: "+ Коктейль",
+    id: "combo-8",
+    title: "КОМБО 8",
+    category: "combo",
+    price: 2800,
+    description: "GoGo Burger + Фри + Кола / Спрайт / Фанта",
     badge: "Новое",
+    image: combo8Image,
     isNew: true,
   },
   {
