@@ -17,7 +17,8 @@ export type MenuCategory =
   | "snacks"
   | "sauces"
   | "combo"
-  | "sets";
+  | "sets"
+  | "desserts";
 
 export type MenuItem = {
   id: string;
@@ -28,6 +29,7 @@ export type MenuItem = {
   badge?: string;
   image?: string;
   popular?: boolean;
+  isNew?: boolean;
 };
 
 export type Category = {
@@ -53,6 +55,7 @@ export const categories: Category[] = [
   { id: "snacks", label: "Тіскебасар", shortLabel: "Снэк", accent: "food" },
   { id: "sauces", label: "Тұздықтар", shortLabel: "Соус", accent: "basic" },
   { id: "combo", label: "Комбо", shortLabel: "Комбо", accent: "deal" },
+  { id: "desserts", label: "Мороженое", shortLabel: "Мороженое", accent: "deal" },
   { id: "sets", label: "Сеттер", shortLabel: "Сет", accent: "deal" },
 ];
 
@@ -173,37 +176,77 @@ export const menu: MenuItem[] = [
     id: "combo-1",
     title: "КОМБО 1",
     category: "combo",
-    price: 1890,
-    description: "Фри шұжықтармен + Лимонад",
-    badge: "Хит",
+    price: 1990,
+    description: "Фри с сосиской + Лимонад",
+    badge: "Новое",
     image: combo1Image,
     popular: true,
+    isNew: true,
   },
   {
     id: "combo-2",
     title: "КОМБО 2",
     category: "combo",
-    price: 2290,
-    description: "Фри тауықпен + Лимонад",
-    badge: "Хит",
+    price: 2390,
+    description: "Фри с курицей + Лимонад",
+    badge: "Новое",
     image: combo2Image,
     popular: true,
+    isNew: true,
   },
   {
     id: "combo-3",
     title: "КОМБО 3",
     category: "combo",
-    price: 2390,
-    description: "Тәтті Бургер + Кофе 0.4",
-    badge: "Выгодно",
+    price: 2800,
+    description: "Фри + Бургер + Лимонад",
+    badge: "Новое",
+    isNew: true,
   },
   {
     id: "combo-4",
     title: "КОМБО 4",
     category: "combo",
-    price: 2890,
-    description: "GoGo Burger + Фри + Кола 0.5",
-    badge: "Выгодно",
+    price: 2390,
+    description: "Сладкий бургер + Кофе 0.3",
+    badge: "Новое",
+    isNew: true,
+  },
+  {
+    id: "combo-5",
+    title: "КОМБО 5",
+    category: "combo",
+    price: 2800,
+    description: "GoGo Burger + Фри + Кола",
+    badge: "Новое",
+    isNew: true,
+  },
+  {
+    id: "ice-cream-strawberry-banana",
+    title: "Мороженое: клубника и банан",
+    category: "desserts",
+    price: 2290,
+    description: "+ Коктейль",
+    badge: "Новое",
+    isNew: true,
+  },
+  {
+    id: "ice-cream-pineapple",
+    title: "Мороженое с ананасом",
+    category: "desserts",
+    price: 2290,
+    description: "+ Коктейль",
+    badge: "Новое",
+    isNew: true,
+  },
+  {
+    id: "ice-cream-mango",
+    title: "Мороженое с манго",
+    category: "desserts",
+    price: 2290,
+    description: "+ Коктейль",
+    badge: "Новое",
+    isNew: true,
   },
   {
     id: "set-1",

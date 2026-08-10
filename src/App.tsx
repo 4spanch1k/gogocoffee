@@ -15,7 +15,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import { categories, menu, type MenuCategory, type MenuItem } from "./data/menu";
 
-type TabId = "popular" | "all" | MenuCategory;
+type TabId = "popular" | "new" | "all" | MenuCategory;
 type Cart = Record<string, number>;
 
 const WHATSAPP_NUMBER = "77711857998";
@@ -30,6 +30,7 @@ const featuredCombos = menu.filter((item) => featuredComboIds.has(item.id));
 
 const tabs: Array<{ id: TabId; label: string }> = [
   { id: "popular", label: "Танымал" },
+  { id: "new", label: "Новое" },
   { id: "all", label: "Барлығы" },
   ...categories.map((category) => ({ id: category.id, label: category.shortLabel })),
 ];
@@ -79,7 +80,7 @@ function App() {
       const category = categoryMeta.get(item.category);
       const matchesTab =
         activeTab === "all" ||
-        (activeTab === "popular" ? item.popular : item.category === activeTab);
+        (activeTab === "popular" ? item.popular : activeTab === "new" ? item.isNew : item.category === activeTab);
       const haystack = `${item.title} ${item.description ?? ""} ${category?.label ?? ""}`.toLowerCase();
       return matchesTab && (!normalizedQuery || haystack.includes(normalizedQuery));
     });
@@ -127,6 +128,12 @@ function App() {
 
   const scrollToMenu = () => {
     document.getElementById("menu")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const openNewMenu = () => {
+    setQuery("");
+    setActiveTab("new");
+    scrollToMenu();
   };
 
   const scrollToCart = () => {
@@ -221,6 +228,24 @@ function App() {
 
       <main className="mx-auto grid max-w-6xl gap-6 px-4 pb-24 pt-6 sm:px-6 lg:grid-cols-[1fr_360px] lg:items-start lg:pb-8">
         <section id="menu" className="min-w-0 scroll-mt-4">
+          <motion.section
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            className="mb-5 overflow-hidden rounded-3xl bg-espresso px-5 py-5 text-milk shadow-soft sm:flex sm:items-center sm:justify-between sm:gap-6 sm:px-6"
+          >
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-citrus">Обновление меню</p>
+              <h2 className="mt-2 text-2xl font-black leading-tight sm:text-3xl">5 комбо и 3 новых мороженых</h2>
+              <p className="mt-2 max-w-xl text-sm leading-6 text-milk/75">Свежие позиции и цены — как в новом меню GO GO COFFEE.</p>
+            </div>
+            <button
+              onClick={openNewMenu}
+              className="mt-4 inline-flex shrink-0 items-center justify-center rounded-full bg-citrus px-5 py-3 text-sm font-black text-espresso transition hover:-translate-y-0.5 hover:bg-[#f2ba22] sm:mt-0"
+            >
+              Смотреть новое
+            </button>
+          </motion.section>
           <div className="sticky top-0 z-30 -mx-4 border-b border-espresso/10 bg-crema/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:static lg:mx-0 lg:border-b-0 lg:bg-transparent lg:px-0 lg:pt-0">
             <div className="relative">
               <Search className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-espresso/45" size={18} />
