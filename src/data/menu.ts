@@ -1,8 +1,8 @@
-const combo1Image = new URL("../assets/combos/combo-1.png", import.meta.url).href;
-const combo2Image = new URL("../assets/combos/combo-2.png", import.meta.url).href;
-const combo3Image = new URL("../assets/combos/combo-3.png", import.meta.url).href;
-const combo4Image = new URL("../assets/combos/combo-4.png", import.meta.url).href;
-const combo5Image = new URL("../assets/combos/combo-5.png", import.meta.url).href;
+const combo1Image = new URL("../assets/combos/combo-1-menu.jpg", import.meta.url).href;
+const combo2Image = new URL("../assets/combos/combo-2-menu.jpg", import.meta.url).href;
+const combo3Image = new URL("../assets/combos/combo-3-menu.jpg", import.meta.url).href;
+const combo4Image = new URL("../assets/combos/combo-4-menu.jpg", import.meta.url).href;
+const combo5Image = new URL("../assets/combos/combo-5-menu.jpg", import.meta.url).href;
 
 export type MenuCategory =
   | "coffee"
