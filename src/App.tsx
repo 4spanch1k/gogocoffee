@@ -17,7 +17,12 @@ const flatWhiteMenuImage = new URL("./assets/menu/flat-white-cutout.png", import
 const cappuccinoMenuImage = new URL("./assets/menu/cappuccino-cutout.png", import.meta.url).href;
 const mochaMenuImage = new URL("./assets/menu/mocha-cutout.png", import.meta.url).href;
 const icedCoffeeMenuImage = new URL("./assets/menu/iced-coffee.png", import.meta.url).href;
+const icedLatteMenuImage = new URL("./assets/menu/iced-latte.png", import.meta.url).href;
 const teaMenuImage = new URL("./assets/menu/tea-cutout.png", import.meta.url).href;
+const greenTeaMenuImage = new URL("./assets/menu/green-tea-cutout.png", import.meta.url).href;
+const jasmineTeaMenuImage = new URL("./assets/menu/jasmine-tea-cutout.png", import.meta.url).href;
+const fruitTeaMenuImage = new URL("./assets/menu/fruit-tea-cutout.png", import.meta.url).href;
+const raspberryTeaMenuImage = new URL("./assets/menu/raspberry-tea-cutout.png", import.meta.url).href;
 const lemonadeMenuImage = new URL("./assets/menu/lemonade.png", import.meta.url).href;
 const milkshakeMenuImage = new URL("./assets/menu/milkshake-cutout.png", import.meta.url).href;
 const strawberryMilkshakeMenuImage = new URL("./assets/menu/strawberry-milkshake-cutout.png", import.meta.url).href;
@@ -26,7 +31,14 @@ const oreoMilkshakeMenuImage = new URL("./assets/menu/oreo-milkshake-cutout.png"
 const caramelMilkshakeMenuImage = new URL("./assets/menu/caramel-milkshake-cutout.png", import.meta.url).href;
 const orangeJuiceMenuImage = new URL("./assets/menu/orange-juice-cutout.png", import.meta.url).href;
 const smoothieMenuImage = new URL("./assets/menu/smoothie.png", import.meta.url).href;
-const colaMenuImage = new URL("./assets/menu/cola.png", import.meta.url).href;
+const colaMenuImage = new URL("./assets/menu/cola-cutout.png", import.meta.url).href;
+const fantaMenuImage = new URL("./assets/menu/fanta-cutout.png", import.meta.url).href;
+const spriteMenuImage = new URL("./assets/menu/sprite-cutout.png", import.meta.url).href;
+const waterMenuImage = new URL("./assets/menu/water-cutout.png", import.meta.url).href;
+const syrupMenuImage = new URL("./assets/menu/syrup.png", import.meta.url).href;
+const honeyMenuImage = new URL("./assets/menu/honey-cutout.png", import.meta.url).href;
+const lemonMenuImage = new URL("./assets/menu/lemon-cutout.png", import.meta.url).href;
+const milkMenuImage = new URL("./assets/menu/milk-cutout.png", import.meta.url).href;
 const pizzaMenuImage = new URL("./assets/menu/pizza.png", import.meta.url).href;
 const burgerMenuImage = new URL("./assets/menu/burger-cutout.png", import.meta.url).href;
 const hotDogMenuImage = new URL("./assets/menu/hot-dog.png", import.meta.url).href;
@@ -62,7 +74,7 @@ const menuImageByItemId: Record<string, string> = {
   "cappuccino-04": cappuccinoMenuImage,
   "latte-03": latteMenuImage,
   "latte-04": latteMenuImage,
-  raf: caramelMilkshakeMenuImage,
+  raf: latteMenuImage,
   mochaccino: mochaMenuImage,
   "hot-chocolate": mochaMenuImage,
   "milkshake-strawberry": strawberryMilkshakeMenuImage,
@@ -81,30 +93,33 @@ const menuImageByItemId: Record<string, string> = {
   "lemonade-pineapple-mango": smoothieMenuImage,
   "lemonade-raspberry-orange": strawberryMilkshakeMenuImage,
   "smoothie-fruit": smoothieMenuImage,
-  "smoothie-berry": strawberryMilkshakeMenuImage,
+  "smoothie-berry": smoothieMenuImage,
   "smoothie-strawberry-banana": bananaMilkshakeMenuImage,
   "smoothie-apple-banana-kiwi": smoothieMenuImage,
   "ice-americano": icedCoffeeMenuImage,
-  "ice-latte": latteMenuImage,
-  "ice-cappuccino": cappuccinoMenuImage,
+  "ice-latte": icedLatteMenuImage,
+  "ice-cappuccino": icedCoffeeMenuImage,
   glasse: milkshakeMenuImage,
   frappe: milkshakeMenuImage,
   "oreo-frappe": oreoMilkshakeMenuImage,
   "ice-matcha-mango": smoothieMenuImage,
   "ice-matcha-strawberry": strawberryMilkshakeMenuImage,
-  "tea-milk": latteMenuImage,
-  "tea-fruit": orangeJuiceMenuImage,
-  "tea-raspberry-ginger": strawberryMilkshakeMenuImage,
-  "tea-berry": strawberryMilkshakeMenuImage,
+  "tea-green": greenTeaMenuImage,
+  "tea-jasmine": jasmineTeaMenuImage,
+  "tea-milk": teaMenuImage,
+  "tea-moroccan": greenTeaMenuImage,
+  "tea-fruit": fruitTeaMenuImage,
+  "tea-raspberry-ginger": raspberryTeaMenuImage,
+  "tea-berry": raspberryTeaMenuImage,
   "coca-cola": colaMenuImage,
-  fanta: orangeJuiceMenuImage,
-  sprite: lemonadeMenuImage,
-  bonaqua: lemonadeMenuImage,
+  fanta: fantaMenuImage,
+  sprite: spriteMenuImage,
+  bonaqua: waterMenuImage,
   juice: orangeJuiceMenuImage,
-  syrup: caramelMilkshakeMenuImage,
-  honey: caramelMilkshakeMenuImage,
-  lemon: lemonadeMenuImage,
-  milk: latteMenuImage,
+  syrup: syrupMenuImage,
+  honey: honeyMenuImage,
+  lemon: lemonMenuImage,
+  milk: milkMenuImage,
   "pizza-margarita": pizzaMargheritaMenuImage,
   "pizza-pepperoni": pizzaMenuImage,
   "pizza-gogo": pizzaChickenMenuImage,
@@ -112,9 +127,9 @@ const menuImageByItemId: Record<string, string> = {
   "pizza-chicken-mushroom": pizzaChickenMenuImage,
   "pizza-bolognese": pizzaMenuImage,
   "pizza-four-seasons": pizzaFourSeasonsMenuImage,
-  "pizza-sweet": strawberryMilkshakeMenuImage,
+  "pizza-sweet": pizzaMenuImage,
   "burger-gogo": burgerMenuImage,
-  "burger-sweet": mochaMenuImage,
+  "burger-sweet": burgerMenuImage,
   fries: friesMenuImage,
   "fries-sausage": friesMenuImage,
   "fries-chicken": nuggetsMenuImage,
